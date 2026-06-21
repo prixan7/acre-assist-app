@@ -14,16 +14,348 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      fertilizer_schedules: {
+        Row: {
+          created_at: string
+          fertilizer_name: string
+          frequency: Database["public"]["Enums"]["frequency"]
+          id: string
+          plant_id: string
+          quantity: string | null
+          scheduled_at: string
+          status: Database["public"]["Enums"]["task_status"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          fertilizer_name: string
+          frequency?: Database["public"]["Enums"]["frequency"]
+          id?: string
+          plant_id: string
+          quantity?: string | null
+          scheduled_at: string
+          status?: Database["public"]["Enums"]["task_status"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          fertilizer_name?: string
+          frequency?: Database["public"]["Enums"]["frequency"]
+          id?: string
+          plant_id?: string
+          quantity?: string | null
+          scheduled_at?: string
+          status?: Database["public"]["Enums"]["task_status"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fertilizer_schedules_plant_id_fkey"
+            columns: ["plant_id"]
+            isOneToOne: false
+            referencedRelation: "plants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      growth_logs: {
+        Row: {
+          created_at: string
+          health: Database["public"]["Enums"]["health_rating"]
+          height_cm: number | null
+          id: string
+          image_url: string | null
+          leaf_count: number | null
+          observation: string | null
+          plant_id: string
+          recorded_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          health?: Database["public"]["Enums"]["health_rating"]
+          height_cm?: number | null
+          id?: string
+          image_url?: string | null
+          leaf_count?: number | null
+          observation?: string | null
+          plant_id: string
+          recorded_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          health?: Database["public"]["Enums"]["health_rating"]
+          height_cm?: number | null
+          id?: string
+          image_url?: string | null
+          leaf_count?: number | null
+          observation?: string | null
+          plant_id?: string
+          recorded_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "growth_logs_plant_id_fkey"
+            columns: ["plant_id"]
+            isOneToOne: false
+            referencedRelation: "plants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      harvests: {
+        Row: {
+          created_at: string
+          grade: Database["public"]["Enums"]["quality_grade"]
+          harvest_date: string
+          id: string
+          notes: string | null
+          plant_id: string
+          quantity: number
+          unit: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          grade?: Database["public"]["Enums"]["quality_grade"]
+          harvest_date?: string
+          id?: string
+          notes?: string | null
+          plant_id: string
+          quantity: number
+          unit?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          grade?: Database["public"]["Enums"]["quality_grade"]
+          harvest_date?: string
+          id?: string
+          notes?: string | null
+          plant_id?: string
+          quantity?: number
+          unit?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "harvests_plant_id_fkey"
+            columns: ["plant_id"]
+            isOneToOne: false
+            referencedRelation: "plants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pesticide_schedules: {
+        Row: {
+          created_at: string
+          frequency: Database["public"]["Enums"]["frequency"]
+          id: string
+          instructions: string | null
+          pesticide_name: string
+          plant_id: string
+          quantity: string | null
+          scheduled_at: string
+          status: Database["public"]["Enums"]["task_status"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          frequency?: Database["public"]["Enums"]["frequency"]
+          id?: string
+          instructions?: string | null
+          pesticide_name: string
+          plant_id: string
+          quantity?: string | null
+          scheduled_at: string
+          status?: Database["public"]["Enums"]["task_status"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          frequency?: Database["public"]["Enums"]["frequency"]
+          id?: string
+          instructions?: string | null
+          pesticide_name?: string
+          plant_id?: string
+          quantity?: string | null
+          scheduled_at?: string
+          status?: Database["public"]["Enums"]["task_status"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pesticide_schedules_plant_id_fkey"
+            columns: ["plant_id"]
+            isOneToOne: false
+            referencedRelation: "plants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plants: {
+        Row: {
+          created_at: string
+          crop_type: string
+          estimated_harvest_date: string | null
+          id: string
+          location: string | null
+          name: string
+          notes: string | null
+          planting_date: string
+          quantity: number
+          status: Database["public"]["Enums"]["crop_status"]
+          updated_at: string
+          user_id: string
+          variety: string | null
+        }
+        Insert: {
+          created_at?: string
+          crop_type: string
+          estimated_harvest_date?: string | null
+          id?: string
+          location?: string | null
+          name: string
+          notes?: string | null
+          planting_date: string
+          quantity?: number
+          status?: Database["public"]["Enums"]["crop_status"]
+          updated_at?: string
+          user_id: string
+          variety?: string | null
+        }
+        Update: {
+          created_at?: string
+          crop_type?: string
+          estimated_harvest_date?: string | null
+          id?: string
+          location?: string | null
+          name?: string
+          notes?: string | null
+          planting_date?: string
+          quantity?: number
+          status?: Database["public"]["Enums"]["crop_status"]
+          updated_at?: string
+          user_id?: string
+          variety?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          name: string | null
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id: string
+          name?: string | null
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      watering_schedules: {
+        Row: {
+          amount: string | null
+          created_at: string
+          frequency: Database["public"]["Enums"]["frequency"]
+          id: string
+          notes: string | null
+          plant_id: string
+          scheduled_at: string
+          status: Database["public"]["Enums"]["task_status"]
+          user_id: string
+        }
+        Insert: {
+          amount?: string | null
+          created_at?: string
+          frequency?: Database["public"]["Enums"]["frequency"]
+          id?: string
+          notes?: string | null
+          plant_id: string
+          scheduled_at: string
+          status?: Database["public"]["Enums"]["task_status"]
+          user_id: string
+        }
+        Update: {
+          amount?: string | null
+          created_at?: string
+          frequency?: Database["public"]["Enums"]["frequency"]
+          id?: string
+          notes?: string | null
+          plant_id?: string
+          scheduled_at?: string
+          status?: Database["public"]["Enums"]["task_status"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "watering_schedules_plant_id_fkey"
+            columns: ["plant_id"]
+            isOneToOne: false
+            referencedRelation: "plants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "farmer" | "viewer"
+      crop_status: "seeded" | "growing" | "nearly_ready" | "ready" | "harvested"
+      frequency:
+        | "daily"
+        | "alternate"
+        | "weekly"
+        | "biweekly"
+        | "monthly"
+        | "custom"
+      health_rating: "excellent" | "good" | "average" | "poor"
+      quality_grade: "A" | "B" | "C"
+      task_status: "pending" | "completed" | "missed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +482,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "farmer", "viewer"],
+      crop_status: ["seeded", "growing", "nearly_ready", "ready", "harvested"],
+      frequency: [
+        "daily",
+        "alternate",
+        "weekly",
+        "biweekly",
+        "monthly",
+        "custom",
+      ],
+      health_rating: ["excellent", "good", "average", "poor"],
+      quality_grade: ["A", "B", "C"],
+      task_status: ["pending", "completed", "missed"],
+    },
   },
 } as const
